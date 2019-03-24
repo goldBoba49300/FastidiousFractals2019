@@ -1,35 +1,4 @@
-<!DOCTYPE html>
-<html>
-	
-	<head>
-	<title>Home</title>
-		<link rel="stylesheet" type="text/css" href="styles.css" />
-		<script src="factalEngine.js"></script>
-	</head>
-	
-	<body>
-	<div class="header">
-		<h1>Fastidious Fractals 2019</h1>
-		<button><a href="index.html">Home</a></button> <button><a href="about.html">About Fractals</a></button> <button><a href="making.html">About the Website</a></button><button><a href="sources.html">Sources</a></button>
-		<hr>
-		<br>
-	</div>
-		<h2>Make Your Own Fractal!</h2>
-		<ol>
-		<li>First, </li>
-		<li>Next, </li>
-		<li>Then, </li>
-		<li>Finally, </li>
-		</ol>
-		<canvas width="800" height="800" id="myCanvas" onclick="mouseUp(event);"></canvas>
-		<br>
-		<button onclick=" reset(); console.log('hello');" class="option1">Flip L</button>
-		<br>
-		<button onclick="flipOne();" class="option2">Flip L</button> <button onclick="flipTwo();" class="option2">Flip R</button>
-		<br>
-		<button onclick="changeIterations(-1);" class="option3">Fewer Iterations</button> <button onclick="changeIterations(1);" class="option3">More Iterations</button>
-		<script>
-		        // JavaScript code goes here
+        // JavaScript code goes here
 
         //constants
         let RecursiveConstructerLength = 700;
@@ -173,14 +142,8 @@
             ctx.stroke();
         }
 
-		function clear() {
-		console.log("test");
-			ctx.beginPath();
-			ctx.clearRect(0,0,canvas.width, canvas.height);
-		}
-
         function draw() {
-			clear();
+            
             // drawing code
             var base = [new FractalLine(0, 300, 2)]//, new FractalLine(2 * Math.PI / 3, 200, 2), new FractalLine(4 * Math.PI / 3, 200, 2)];
             var recurse = [new FractalLine( fracAngle, fracLength, flipA)];
@@ -201,12 +164,8 @@
             ctx.lineTo(mouseX, mouseY);
             ctx.lineTo(750, 700)
             ctx.stroke();
-			
             
         }
-		
-		
-		
         function flipOne() {
             if (flipA == 2) {
                 flipA = 3;
@@ -231,7 +190,7 @@
             var x = event.clientX;
             var y = event.clientY;
 
-            fracLength = distance(50, 700, x, y);
+            this.length = distance(50, 700, x, y);
             var delX = 50 - x;
             var delY = 700 - y;
             fracAngle = Math.atan(delY / delX);
@@ -299,7 +258,9 @@
             }
         }
         draw()
-        
+        function clear() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
 
         function changeIterations(amount) {
             if (iterations + amount > 0); {
@@ -315,6 +276,3 @@
             fracLength = startLength;
             draw();
         }
-		</script>
-	</body>
-</html>
